@@ -1,0 +1,36 @@
+<div class="container">
+	<h1 class="pt-2 text-center">Your Cart</h1>
+	<% if @current_cart&.cart_items&.any? %>
+		<p class="text-center">You have <%= @current_cart.cart_items.count %> items in your cart</p>
+		<% if !current_user %>
+			<div class="text-center">
+				<%= link_to "Sign Up to save your Cart for later", new_user_registration_path, class: "text-center btn bg-warning mx-5" %>
+			</div>
+		<% else %>
+			<p class="text-center"> <%= link_to "Checkout Now", new_checkout_path , class: "px-2 py-1 text-dark border border-dark 	rounded bg-warning" %> </p>
+		<% end %>
+	<% else %>
+		<p class="text-center">You dont't have any items in your cart</p>
+	<% end %>
+
+  <div class="mb-5">
+  	<% if @current_cart&.products&.any? %>
+			<% @current_cart.products.each do |product|%>
+		    <div class="row">
+		      <div class="col-md-3"></div>
+		      <div class="col-md-3 mt-5 ">
+		      	<%= link_to product ,class: "text-dark" do %>
+				    <%= image_tag product.images.first , class: "w-50" %>
+				    <% end %>
+			    </div>
+		      <div class="col-md-3 mt-5">
+			      <p class="pt-2"><strong><%= product.name %></strong></p>
+			      <p><strong>Price : </strong>Rs.<%= product.price.to_i %></p>
+			      <%= link_to "Remove", cart_path(@current_cart.secret_id, product_id: product.id) , class: "text-white border bg-danger rounded py-1 px-2", data: { turbo_method: "delete"} %>
+		      </div>
+		      <div class="col-md-3"></div>
+		    </div>
+	    <% end %>
+    <% end %>
+  </div>
+</div>

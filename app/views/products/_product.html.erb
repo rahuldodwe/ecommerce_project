@@ -1,0 +1,28 @@
+<div id="<%= dom_id product %>">
+
+  <%= link_to product ,class: "text-dark" do %>
+    <div style = "padding: 15px">
+      <%= image_tag product.images.first, class: "border-radius: 8px w-50" if product.images.any? %>
+    </div>
+    <p class="" style="font-size: 15px;">
+      <strong>Name:</strong>
+      <%= product.name %>
+      <br>
+      <strong>Price:</strong>
+      Rs.<%= product.price.to_i %>
+    <% end %>
+    <div class="d-flex justify-content-center">
+      <div class="d-flex inline-block">
+        <%= form_with url: direct_buy_checkouts_path, method: :post, local: true do |form| %>
+          <%= hidden_field_tag :product_id, product.id %>
+          <%= submit_tag "Buy Now", class: "btn btn-primary" %>
+        <% end %> 
+        <button class="bg-warning btn font-weight-bold mx-2">
+          <%= link_to "Add To Cart", cart_path(product_id: product.id), class: "text-dark", data: { turbo_method: "post"} %>
+        </button>
+      </div>
+    </div>
+    </p>
+    
+  
+</div>

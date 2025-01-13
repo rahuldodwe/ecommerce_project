@@ -1,0 +1,56 @@
+<div class="container mt-5 mb-5">
+  <p style="color: green" class="pt-2"><%= notice %></p>
+
+    <div>
+      <%= link_to "Categories", categories_path %>
+      <%= link_to  "> #{@category.name}", @category if @category  %>
+    </div>
+
+  <div class="">
+      <h3><%= @category.name %> - </h3>
+      <%= image_tag @category.image, style: "height: 190px"  if @category.image.attached? %>
+      <p><strong>Description : </strong><%= @category.description %></p>
+  </div>
+  <div style="display: grid;grid-template-columns: auto auto auto; padding: 10px;">
+    <% @category.products.each do | product | %>
+      <div style="margin: 5px;border-radius: 13px; border: 1px solid black;font-size: 20px;text-align: center;" >
+          <%= render "products/product", product: product %>     
+      </div>
+      
+    <% end %>
+  </div>
+
+  <div>
+    <% if current_admin %>
+    <%= link_to "Edit this category", edit_category_path(@category) %> |
+    <%= link_to "Back to categories", categories_path %>  
+    <%= button_to "Destroy this category", @category, method: :delete %>
+    <% end %>
+  </div>
+
+</div>
+
+<% if @category.parent_id == nil %>
+  <div class="container">
+    <div id="categories" class="min-w-full">
+      <h3><%= @category.name %> Sub-Categories -</h3>
+      <div style=" display: grid; grid-template-columns: auto auto auto; padding: 10px; ">
+      <% @subcategories.each do |category| %>
+        <div style="margin: 50px; border-radius: 13px; border: 1px solid black; font-size: 20px; text-align: center; " >
+            <%= render category %>
+          </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+

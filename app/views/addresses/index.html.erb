@@ -1,0 +1,8 @@
+<div class="container mt-5">
+				<div class="pt-5">
+				<h4>Your Addresses</h4>
+				<% current_user.addresses.each  do |address| %>
+				<p> - <%= address.line1 %> <%= address.line2 %> <%= address.city %> <%= address.state %> <%= address.postal_code %> <%= address.country %></p>
+				<% end %>
+			</div>
+</div>

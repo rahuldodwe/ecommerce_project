@@ -1,0 +1,22 @@
+<div class="container mt-5">
+	<h2 class="pt-2">Checkout</h2>
+	<table>
+	  <thead>
+	    <tr>
+	      <th>Product</th>
+	      <th class="pl-5">Price</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <% @cart_items.each do |item| %>
+	      <tr>
+	        <td><%= item.product.name %></td>
+	        <td class="pl-5">Rs.<%= item.product.price.to_i %></td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+	<hr>
+	<p>Total Price: Rs.<%= @total_price.to_i %></p>
+	<%= button_to 'Next', checkouts_path, method: :post, class: 'btn btn-success' %>
+</div>

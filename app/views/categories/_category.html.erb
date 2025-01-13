@@ -1,0 +1,10 @@
+<%= link_to category do %>
+  <div id="<%= dom_id category %>">
+    <p class="mt-5">
+      <%= image_tag category.image, class: "border-radius: 8px w-50" %>
+    </p>
+    <p>
+      <%= category.name %>
+    </p>
+  </div>
+<% end %>

@@ -1,0 +1,33 @@
+<div class="container my-5">
+	<h2 class="pt-2 text-center">Your Recent Orders -</h2>
+
+	<% if @orders.any? %>
+		<div class="d-flex justify-content-center">
+			<table>
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Order Id</th>
+						<th>Email</th>
+						<th>View Detail</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% num = 1%>
+					<% @orders.each do |order| %>
+					<tr>
+						<td><%= num %></td>
+						<td><%= order.id %></td>
+						<td><%= order.user.email %></td>
+						<td><%= link_to "View", order_path(order) %></td>
+					</tr>
+					<% num = num+1%>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	<% else %>	
+		<h2 class="pt-5 font-weight-bold text-center text-danger">You don't have any order history !</h2>
+	<% end %>
+
+</div>

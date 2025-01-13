@@ -1,0 +1,27 @@
+<div class="w-full container mt-5">
+  <div class="mt-5">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+  </div>
+
+
+  <div class="flex justify-between items-center mt-5">
+    <h1 class="font-bold text-4xl pt-3">Categories</h1>
+    <% if current_admin %>
+    <div>
+      <button><%= link_to "New category" , new_category_path %></button>
+    </div>
+    <% end  %>
+  </div>
+
+  <div id="categories" class="min-w-full">
+    <div style=" display: grid; grid-template-columns: auto auto auto; padding: 10px; ">
+    <% @categories.each do |category| %>
+      <div style="margin: 50px; border-radius: 13px; border: 1px solid black; font-size: 20px; text-align: center; " >
+          <%= render category %>
+        </div>
+    <% end %>
+    </div>
+  </div>
+</div>

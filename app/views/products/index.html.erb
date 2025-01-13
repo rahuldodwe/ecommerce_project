@@ -1,0 +1,68 @@
+
+<% if params[:query].present? %>
+  <% if @search_products.any? %>
+  <div class="container mt-2">
+    <h2 class="pt-2">Search Results for "<%= params[:query] %>":</h2>
+    <div>
+      <% @search_products.each do |product| %>
+          <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-3 mt-5 ">
+            <%= link_to product ,class: "text-dark" do %>
+            <%= image_tag product.images.first , class: "w-50" %>
+            <% end %>
+          </div>
+          <div class="col-md-3 mt-5">
+            <p class="pt-2"><strong><%= product.name %></strong></p>
+            <p><strong>Price : </strong>Rs.<%= product.price.to_i %></p>
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <% else %>
+    <p class="font-weight-bold text-danger text-center pt-3">No product found.</p>
+    <div class="text-center"><%= link_to "Go To Home" , root_path, class: "btn bg-warning" %></div>
+  <% end %>
+<% else %>
+<div class="d-flex inline-block" >
+<div class="sidebar bg-dark" >
+  <button class="btn bg-warning my-1 py-1" onclick="category_head()" >Categories ▼</button>
+  <ul id="category-list" class="category-list">
+    <% @categories.each do |category| %>
+      <li>
+        <% if category.parent_id != nil %>
+            <li class="border px-3 bg-warning rounded"><%= link_to category.name,  products_path(category_id: category.id) ,class: "text-dark"%>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+</div>
+<div class="container">
+  <div class="flex justify-between items-center">
+    <% if current_admin %>
+    <div>
+      <button><%= link_to "New product", new_product_path%></button>
+    </div>
+    <% end  %>
+  </div>
+ 
+  <div id="products"  class="ml-5">
+    <div style=" display: grid; grid-template-columns: auto auto auto; background-color: ; padding: 10px; ">
+    <% @products.each do |product| %>
+        <div style="margin: 5px; border-radius: 13px; background-color: #f1f1f1; border: 1px solid black; font-size: 20px; text-align: center; " >
+          <%= render product %>
+        </div>
+            
+    <% end %>
+    </div>
+  </div>
+</div>
+
+</div>
+<% end %>
+
+
+

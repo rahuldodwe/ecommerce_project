@@ -1,0 +1,4 @@
+<%= form_with url: direct_buy_checkouts_path, method: :post, local: true do |form| %>
+  <%= hidden_field_tag :product_id, product.id %>
+  <%= submit_tag "Buy Now", class: "btn btn-primary" %>
+<% end %>

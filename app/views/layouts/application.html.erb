@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Ecommerce Project" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <%= render "layouts/navbar" %>
+    <%= yield %>
+    <script type="text/javascript">
+      function category_head() {
+        const toggleButton = document.getElementById("toggle-button");
+        const categoryList = document.getElementById("category-list");
+
+          if (categoryList.style.display === "none" || categoryList.style.display === "") {
+            categoryList.style.display = "block"; // Show the category list
+          } else {
+            categoryList.style.display = "none"; // Hide the category list
+          }
+       
+      };
+      function sub_category_head() {
+        const toggleButton = document.getElementById("toggle-button");
+        const categoryList = document.getElementById("sub-category-list");
+
+          if (categoryList.style.display === "none" || categoryList.style.display === "") {
+            categoryList.style.display = "block"; // Show the category list
+          } else {
+            categoryList.style.display = "none"; // Hide the category list
+          }
+       
+      };
+    </script>
+  </body>
+</html>

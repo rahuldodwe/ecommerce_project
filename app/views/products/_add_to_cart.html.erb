@@ -1,0 +1,3 @@
+<button class="bg-warning btn font-weight-bold mx-2">
+	<%= link_to "Add To Cart", cart_path(product_id: @product.id), class: "text-dark", data: { turbo_method: "post"} %>
+</button>

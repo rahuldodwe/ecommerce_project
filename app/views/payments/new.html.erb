@@ -1,0 +1,23 @@
+<div class="container mt-5">
+	<h1 class="pt-2">Payment</h1>
+
+	<p>Total Amount: Rs.<%= @order.total_price.to_i %></p>
+
+	<%= form_with url: payments_path, method: :post do |f| %>
+	  <div>
+	    <%= f.label :card_number, "Card Number" %>
+	    <%= f.text_field :card_number , required: true %>
+	  </div>
+	  <div>
+	    <%= f.label :expiry_date, "Expiry Date" %>
+	    <%= f.text_field :expiry_date, required: true %>
+	  </div>
+	  <div>
+	    <%= f.label :cvv, "CVV" %>
+	    <%= f.password_field :cvv ,required: true %>
+	  </div>
+
+	  <%= submit_tag "Make Payment", class: "btn btn-success" %>
+	<% end %>
+
+</div>
