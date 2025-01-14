@@ -3,9 +3,7 @@
 <%= form_with model: @feedback, url: order_feedbacks_path(@order), local: true do |f| %>
   <div>
     <%= f.label :product_id, "Select Product" %>
-    <%#= f.collection_select :product_id, @order.order_items, :id, :name, prompt: "Choose a product" %>
-
-    <%= f.select :product_id, options_for_select(@order.order_items.map { |p| [ (p.product_id)] }), include_blank: "Select Porduct" %>
+    <%= f.collection_select :product_id, @order.products, :id, :name, prompt: "Choose a product" %>
   </div>
 
   <div>

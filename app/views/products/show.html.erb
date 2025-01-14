@@ -36,12 +36,14 @@
       </div>
       <div class="col-md-3"></div>
     </div>
-    <div>
-      <h2>Feedback</h2>
-      <% @product.feedbacks.each do |feedback| %>
-        <p><strong><%= feedback.user.email %></strong> rated: <%= feedback.rating %> / 5</p>
-        <p><%= feedback.comment %></p>
-      <% end %>
+    <div class="d-flex justify-content-center mt-5">
+      <div>
+        <h2>Feedback : </h2>
+        <% @product.feedbacks.each do |feedback| %>
+          <p><strong><%= feedback.user.email %></strong> rated: <%= feedback.rating %> / 5</p>
+          <p><%= feedback.comment %></p>
+        <% end %>
+      </div>
     </div>
 
     <% if current_admin %>

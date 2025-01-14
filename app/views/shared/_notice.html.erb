@@ -1,0 +1,21 @@
+
+
+
+
+<!-- app/views/shared/_notice.html.erb -->
+<% if notice || alert %>
+  <div id="flash-messages" class="flash-message <%= alert ? 'alert' : 'notice' %>">
+    <span><%= notice || alert %></span>
+    <button class="close-button" onclick="this.parentElement.style.display='none'">&times;</button>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
