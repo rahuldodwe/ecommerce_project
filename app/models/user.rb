@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :carts
   has_many :orders
   has_many :addresses
+  has_many :products, through: :order_items
   # after_create :send_sign_up_email
   # after_update :send_login_email, if: :saved_change_to_current_sign_in_at?
 

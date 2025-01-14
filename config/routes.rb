@@ -22,7 +22,9 @@ Rails.application.routes.draw do
   resources :addresses, only: [:new, :create, :index]
   resources :payments, only: [:new, :create]
 
-  resources :orders, only: [:index, :show]
+  resources :orders do
+    resources :feedbacks, only: [:new, :create]
+  end
  
   root "products#index"
 end

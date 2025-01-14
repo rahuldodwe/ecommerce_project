@@ -1,9 +1,5 @@
 <div class="d-flex align-items-center">
   <div class="container mt-2">
-  <% if notice.present? %>
-    <p class="text-success pt-4 text-center" id="notice"><%= notice %></p>
-  <% end %>
-
     <div>
       <%= link_to "Products", products_path %>
       <%= link_to  "> #{@product.category.name}", @product.category if @product.category  %>
@@ -28,6 +24,7 @@
       </div>
       <div class="col-md-3 mt-5">
         <p><strong><%= @product.name %></strong></p>
+        <p><strong>Rating : <%= @product.average_rating %> / 5</strong></p>
         <p><strong>Description : </strong><%= @product.description %></p>
         <p><strong>Price : </strong>Rs.<%= @product.price.to_i %></p>
 
@@ -38,6 +35,13 @@
         
       </div>
       <div class="col-md-3"></div>
+    </div>
+    <div>
+      <h2>Feedback</h2>
+      <% @product.feedbacks.each do |feedback| %>
+        <p><strong><%= feedback.user.email %></strong> rated: <%= feedback.rating %> / 5</p>
+        <p><%= feedback.comment %></p>
+      <% end %>
     </div>
 
     <% if current_admin %>

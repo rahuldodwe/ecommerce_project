@@ -1,0 +1,22 @@
+<h1>Leave Feedback</h1>
+
+<%= form_with model: @feedback, url: order_feedbacks_path(@order), local: true do |f| %>
+  <div>
+    <%= f.label :product_id, "Select Product" %>
+    <%#= f.collection_select :product_id, @order.order_items, :id, :name, prompt: "Choose a product" %>
+
+    <%= f.select :product_id, options_for_select(@order.order_items.map { |p| [ (p.product_id)] }), include_blank: "Select Porduct" %>
+  </div>
+
+  <div>
+    <%= f.label :rating, "Rating (1-5)" %>
+    <%= f.number_field :rating, min: 1, max: 5, step: 1 %>
+  </div>
+
+  <div>
+    <%= f.label :comment, "Comment" %>
+    <%= f.text_area :comment, rows: 5 %>
+  </div>
+
+  <%= f.submit "Submit Feedback", class: "btn btn-primary" %>
+<% end %>
