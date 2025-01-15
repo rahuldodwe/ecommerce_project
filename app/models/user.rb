@@ -3,19 +3,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  has_one_attached :user_picture
+
   has_many :carts
   has_many :orders
   has_many :addresses
   has_many :products, through: :order_items
-  # after_create :send_sign_up_email
-  # after_update :send_login_email, if: :saved_change_to_current_sign_in_at?
 
-  # private
-  # def send_sign_up_email
-  #   UserMailer.sign_up_email(self).deliver_now
-  # end
+  validates :username, presence: true, uniqueness: true, length: { maximum: 30 }
 
-  # def send_login_email
-  #   UserMailer.login_email(self).deliver_later
-  # end
 end

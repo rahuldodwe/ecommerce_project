@@ -4,11 +4,12 @@
 
 		<div class="col-md-3">
 			<div>
-				<h4 class="py-5">Profile Picture</h4>
+				<h4 class="">Profile Picture</h4>
+				<%= image_tag current_user.user_picture, style: "width: 150px; height: 150px; border-radius: 50%;" %>
 			</div>
 			<div>
 				<h4>User Name</h4>
-				<p><%= current_user.email %></p>
+				<p><%= current_user.username %></p>
 			</div>
 			<div>
 				<h4>Email</h4>

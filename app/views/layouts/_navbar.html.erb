@@ -25,7 +25,13 @@
           <button class="bg-warning rounded border border-light "><%= link_to "Log Out Admin", destroy_admin_session_path, data: { turbo_method: :delete }, class: "text-dark" %></button>
         <% end %>
         <% if current_user %>
-         <button class="bg-warning rounded border border-light "><%= link_to "Profile", users_path, class: "text-dark" %></button>
+          <% if current_user.user_picture.attached? %>
+            <%= link_to users_path do  %>
+            <%= image_tag current_user.user_picture, style: "width: 35px; height: 35px; border-radius: 50%;" %>
+            <% end %>
+          <% else %>
+            <button class="bg-warning rounded border border-light "><%= link_to "Profile", users_path, class: "text-dark" %></button>
+          <% end %>
       	 <button class="bg-warning rounded border border-light "><%= link_to "Log Out", destroy_user_session_path, data: { turbo_method: :delete }, class: "text-dark" %></button>
         <% else %>
         <button class="bg-warning rounded border border-warning "><%= link_to "Log In", new_user_session_path, class: "text-dark" %></button>
